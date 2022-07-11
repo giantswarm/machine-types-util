@@ -1,3 +1,14 @@
 # Google Cloud Platform (GCP)
 
-Place scripts/utils for GCP in this folder.
+## Prerequisites
+
+- Personal access to a GCP project
+- Google Compute API enabled in that GCP project. See [here](https://console.developers.google.com/apis/api/compute).
+
+## Usage
+
+1. Install the `gcloud` CLI as explained in the [documentation](https://cloud.google.com/sdk/docs/install-sdk).
+2. Run `gcloud auth application-default login`
+3. Create a virtual python environment using `python3 -m venv venv` here in the GCP folder.
+4. Activate the venv using `source ./venv/bin/activate`
+5. Install dependencies using `pip install -r requirements.txt`
