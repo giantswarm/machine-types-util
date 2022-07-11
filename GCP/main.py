@@ -74,4 +74,3 @@ output = dump(result, Dumper=Dumper)
 
 print('# YAML representation of GCP machine types:\n')
 print(output)
-
