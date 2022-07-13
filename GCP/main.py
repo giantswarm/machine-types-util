@@ -62,11 +62,10 @@ for item in machine_types:
     }
 
 result = {
-    'GCP': {
-        'MachineTypes': {
-            'Allowed': keys,
-            'Capabilities': capabilities,
-        }
+    'machinetypes': {
+        'default': 'n1-standard-4',
+        'allowed': keys,
+        'capabilities': capabilities,
     }
 }
 
