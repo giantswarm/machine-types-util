@@ -7,7 +7,7 @@ GCP_PROJECT = 'testing-cluster-api'
 GCP_ZONE = 'europe-west1-b'
 
 # Minimal number of CPUs required.
-MINIMUM_CPUS = 4
+MINIMUM_CPUS = 2
 
 # Minimal amount of RAM required, in MB.
 MINIMUM_RAM_MB = 4000
