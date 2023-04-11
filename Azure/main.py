@@ -73,9 +73,11 @@ def main():
 
     result = {
         "vm": {
-            "default": "Standard_D2s_v3",
-            "allowed": [k for k in capabilities.keys()],
-            "capabilities": capabilities,
+            "vmSize": {
+                "default": "Standard_D2s_v3",
+                "allowed": [k for k in capabilities.keys()],
+                "capabilities": capabilities,
+            }
         }
     }
 
