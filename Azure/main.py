@@ -49,13 +49,13 @@ def main():
         if vm.name in capabilities and vm.number_of_cores >= MINIMUM_CPUS:
             vm_info = {
                 **capabilities[vm.name],
-                'additionalProperties': vm.additional_properties,
-                'maxDataDiskCount': vm.max_data_disk_count,
-                'memoryInMb': vm.memory_in_mb,
-                'name': vm.name,
-                'numberOfCores': vm.number_of_cores,
-                'osDiskSizeInMb': vm.os_disk_size_in_mb,
-                'resourceDiskSizeInMb': vm.resource_disk_size_in_mb
+                "additionalProperties": vm.additional_properties,
+                "maxDataDiskCount": vm.max_data_disk_count,
+                "memoryInMb": vm.memory_in_mb,
+                "name": vm.name,
+                "numberOfCores": vm.number_of_cores,
+                "osDiskSizeInMb": vm.os_disk_size_in_mb,
+                "resourceDiskSizeInMb": vm.resource_disk_size_in_mb
             }
             capabilities[vm.name] = vm_info
 
