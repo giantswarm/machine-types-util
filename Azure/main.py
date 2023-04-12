@@ -1,7 +1,5 @@
 SUBSCRIPTION_ID = "PLACEHOLDER"
-
 LOCATION = "westeurope"
-
 MINIMUM_CPUS = 2
 
 # Keys should match the value of the Azure Resource SKU "family" key.
@@ -17,14 +15,6 @@ VM_FAMILIES = {
     "standardDSv5Family": {
         "name": "Dsv5-series",
         "type": "general purpose"
-    },
-    "standardNCSv3Family": {
-        "name": "NCv3-series",
-        "type": "GPU - accelerated compute"
-    },
-    "Standard NCASv3_T4 Family": {
-        "name": "NCasT4_v3-series",
-        "type": "GPU - accelerated compute"
     },
 }
 
@@ -85,7 +75,6 @@ def main():
 
     print("# YAML representation of Azure machine types:\n")
     print(output)
-
 
 if __name__ == "__main__":
     main()
