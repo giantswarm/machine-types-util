@@ -1,12 +1,6 @@
 
 BYTES_IN_ONE_MIB = 1048576
 
-# Minimal number of (v)CPUs required.
-MINIMUM_CPUS = 2
-
-# Minimal amount of RAM required, in MB.
-MINIMUM_RAM_MB = 4000
-
 import os
 import boto3
 import sys
@@ -25,6 +19,34 @@ client = boto3.client('account')
 # These are the two regions we query for instance types,
 # as experiments showed that together they have all of them.
 regions = ["us-east-1", "us-east-2"]
+
+def generate_description(itdict):
+    """
+    Generate a description for an instance type.
+    """
+    desc = ""
+
+    if itdict["BareMetal"]:
+        desc += "Bare metal "
+
+    desc = itdict["ProcessorInfo"]["SupportedArchitectures"][0]
+
+    if itdict["VCpuInfo"]["DefaultVCpus"] > 1:
+        desc += " CPUs"
+    else:
+        desc += " CPU"
+    
+    if 'SustainedClockSpeedInGhz' in itdict['ProcessorInfo']:
+        desc += f" at {itdict['ProcessorInfo']['SustainedClockSpeedInGhz']} GHz"
+    
+    if 'GpuInfo' in itdict:
+        desc += f", {itdict['GpuInfo']['Gpus'][0]['Manufacturer']} {itdict['GpuInfo']['Gpus'][0]['Name']} GPU"
+    
+    if 'NetworkInfo' in itdict:
+        desc += f", {itdict['NetworkInfo']['MaximumNetworkInterfaces']} NICs"
+        desc += f", {itdict['NetworkInfo']['NetworkPerformance'][0].lower()}{itdict['NetworkInfo']['NetworkPerformance'][1:]}"
+
+    return desc
 
 # Collect instance types
 capabilities = {}
@@ -53,14 +75,12 @@ for region in regions:
         mem_str = f"{mem:.2f}"
         record["memory_size_gb"] = float(mem_str)
 
-        # Skip instance types with too few CPUs or RAM
-        if record["cpu_cores"] < MINIMUM_CPUS or record["memory_size_gb"] < (MINIMUM_RAM_MB / 1000.0):
-            continue
-
         try:
             record["storage_size_gb"] = instance_type["InstanceStorageInfo"]["TotalSizeInGB"]
         except KeyError:
             pass
+        
+        record["description"] = generate_description(instance_type)
 
         capabilities[instance_type["InstanceType"]] = record
         new_types += 1
@@ -70,3 +90,5 @@ for region in regions:
 output = dump({"capabilities": capabilities}, Dumper=Dumper)
 print("# YAML representation of EC2 instance types:\n")
 print(output)
+
+
