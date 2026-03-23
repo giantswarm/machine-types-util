@@ -18,6 +18,6 @@ Execute `aws iam get-user` to verify that you are authenticated.
 2. Create a virtual python environment using `python3 -m venv venv` here in the AWS folder.
 3. Activate the virtual environmnent using `source ./venv/bin/activate`
 4. Install dependencies using `pip install -r requirements.txt`
-5. Execute `python main.py`.
+5. Execute `python full-json-export.py`.
 
-As a result, a YAML representation of the instance types data will be printed to standard output. This output can then be used in the giantswarm/config repository.
+As a result, a JSON file with the instance types data will written to `instance_types.json`.
