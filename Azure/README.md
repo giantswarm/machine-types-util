@@ -12,7 +12,6 @@
 4. Create a virtual python environment using `python3 -m venv venv` here in the Azure folder.
 5. Activate the venv using `source ./venv/bin/activate`
 6. Install dependencies using `pip install -r requirements.txt`
-7. Replace `SUBSCRIPTION_ID` in `main.py` with a valid Azure subscription ID.
-8. Execute `python main.py`.
+7. Execute `python full-json-export.py`.
 
-As a result, a YAML representation of the machine types data will be printed to standard output. This output can then be used in the giantswarm/config repository.
+As a result, a JSON file with machine types data will be created in `vm_types.json`.
